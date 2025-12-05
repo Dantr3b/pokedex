@@ -1,20 +1,26 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Header from './components/Header'
 import PokemonList from './components/PokemonList'
-import pokemonData from './data.json'
-import './index.css'
+import './App.css'
 
 function App() {
-  const [pokemons] = useState(pokemonData)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [language, setLanguage] = useState('en')
 
   return (
-    <div className="app">
-      <Header />
+    <div className="App">
+      <Header 
+        searchTerm={searchTerm} 
+        onSearchChange={setSearchTerm}
+        language={language}
+        onLanguageChange={setLanguage}
+      />
       <main>
-        <PokemonList pokemons={pokemons} />
+        <PokemonList searchTerm={searchTerm} language={language} />
       </main>
     </div>
   )
 }
 
 export default App
+
