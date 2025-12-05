@@ -17,43 +17,58 @@ const Header = ({ searchTerm, onSearchChange, language, onLanguageChange }) => {
 
   return (
     <AppBar position="static" sx={{ bgcolor: 'background.paper' }}>
-      <Toolbar sx={{ gap: 2, flexWrap: 'wrap' }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+      <Toolbar 
+        sx={{ 
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: 2,
+          py: 1
+        }}
+      >
+        {/* Logo à gauche */}
+        <Box sx={{ flexShrink: 0 }}>
           <img 
             src="/logo.svg" 
             alt="Pokedex Logo" 
-            style={{ width: '150px', height: 'auto' }}
+            style={{ width: '150px', height: 'auto', display: 'block' }}
           />
         </Box>
         
-        <TextField
-          variant="outlined"
-          placeholder="Enter a pokemon name"
-          value={searchTerm}
-          onChange={(e) => onSearchChange(e.target.value)}
-          size="small"
-          sx={{ 
-            flex: 1, 
-            maxWidth: 600,
-            '& .MuiOutlinedInput-root': {
-              bgcolor: 'background.default',
-            }
-          }}
-        />
+        {/* Barre de recherche au centre */}
+        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center', px: 2 }}>
+          <TextField
+            variant="outlined"
+            placeholder="Enter a pokemon name"
+            value={searchTerm}
+            onChange={(e) => onSearchChange(e.target.value)}
+            size="small"
+            sx={{ 
+              width: '100%',
+              maxWidth: 500,
+              '& .MuiOutlinedInput-root': {
+                bgcolor: 'background.default',
+              }
+            }}
+          />
+        </Box>
         
-        <FormControl size="small" sx={{ minWidth: 140 }}>
-          <Select
-            value={language}
-            onChange={(e) => onLanguageChange(e.target.value)}
-            sx={{ bgcolor: 'background.default' }}
-          >
-            {languages.map(lang => (
-              <MenuItem key={lang.code} value={lang.code}>
-                {lang.flag} {lang.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        {/* Sélecteur de langue à droite */}
+        <Box sx={{ flexShrink: 0 }}>
+          <FormControl size="small" sx={{ minWidth: 140 }}>
+            <Select
+              value={language}
+              onChange={(e) => onLanguageChange(e.target.value)}
+              sx={{ bgcolor: 'background.default' }}
+            >
+              {languages.map(lang => (
+                <MenuItem key={lang.code} value={lang.code}>
+                  {lang.flag} {lang.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
       </Toolbar>
     </AppBar>
   )
