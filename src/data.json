@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Bulbasaur",
+    "type": "Grass/Poison",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+  },
+  {
+    "id": 4,
+    "name": "Charmander",
+    "type": "Fire",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
+  },
+  {
+    "id": 7,
+    "name": "Squirtle",
+    "type": "Water",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
+  },
+  {
+    "id": 25,
+    "name": "Pikachu",
+    "type": "Electric",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+  },
+  {
+    "id": 39,
+    "name": "Jigglypuff",
+    "type": "Normal/Fairy",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png"
+  },
+  {
+    "id": 94,
+    "name": "Gengar",
+    "type": "Ghost/Poison",
+    "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png"
+  }
+]
