@@ -1,10 +1,23 @@
 # 🎮 Pokédex React
 
-Une application Pokédex moderne et interactive construite avec React et Vite, présentant une interface utilisateur élégante avec des animations fluides.
+> 📚 **Projet Éducatif Individuel** - Application Pokédex moderne et interactive construite avec React et Vite
+
+Une application web présentant une interface utilisateur élégante avec des animations fluides, développée dans le cadre d'un apprentissage des technologies web modernes.
 
 ![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-7.2.6-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Educational](https://img.shields.io/badge/Type-Educational-green?style=for-the-badge)
+
+## 🎯 Objectifs Pédagogiques
+
+Ce projet a été développé pour apprendre et pratiquer :
+
+- ⚛️ **React** - Composants fonctionnels, hooks, et gestion d'état
+- 🏗️ **Architecture** - Organisation modulaire du code
+- 🎨 **CSS Moderne** - Flexbox, Grid, animations et responsive design
+- ⚡ **Vite** - Configuration et optimisation d'un projet moderne
+- 📦 **npm** - Gestion des dépendances et scripts
 
 ## ✨ Fonctionnalités
 
@@ -112,15 +125,9 @@ npm run lint
 - [ ] Animations de chargement
 - [ ] Tests unitaires et d'intégration
 
-## 🤝 Contribution
+## 📚 Contexte Éducatif
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
-
-1. Fork le projet
-2. Créer une branche pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
-3. Commit vos changements (`git commit -m 'Add some AmazingFeature'`)
-4. Push vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrir une Pull Request
+Ce projet a été réalisé dans le cadre d'un apprentissage personnel des technologies web modernes. Il s'agit d'un projet individuel visant à mettre en pratique les concepts de React, la gestion de composants, et le design responsive.
 
 ## 📝 Licence
 
@@ -128,16 +135,15 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 👤 Auteur
 
-**Votre Nom**
+Projet éducatif individuel réalisé pour l'apprentissage du développement web moderne.
 
-- GitHub: [@votre-username](https://github.com/votre-username)
+## 🙏 Ressources
 
-## 🙏 Remerciements
-
-- [PokeAPI](https://pokeapi.co/) pour les données et images des Pokémon
-- [Vite](https://vitejs.dev/) pour l'excellent outil de build
-- [React](https://react.dev/) pour la bibliothèque UI
+- [PokeAPI](https://pokeapi.co/) - Données et images des Pokémon
+- [Vite Documentation](https://vitejs.dev/) - Guide et documentation Vite
+- [React Documentation](https://react.dev/) - Documentation officielle React
+- [MDN Web Docs](https://developer.mozilla.org/) - Référence CSS et JavaScript
 
 ---
 
-⭐ N'oubliez pas de mettre une étoile si vous aimez ce projet !
+💡 **Note** : Ce projet est à but éducatif et ne prétend pas être une application de production.
