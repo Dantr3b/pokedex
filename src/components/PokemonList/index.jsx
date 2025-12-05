@@ -1,33 +1,29 @@
 import React, { useState, useEffect } from 'react'
+import Grid from '@mui/material/Grid'
+import CircularProgress from '@mui/material/CircularProgress'
+import Alert from '@mui/material/Alert'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import PokemonCard from '../PokemonCard'
-import './style.css'
 
 // Mapping des codes de langue pour l'API PokeAPI
 const languageMap = {
   'en': 'en',
   'fr': 'fr',
   'es': 'es',
-  'ja': 'ja-Hrkt' // Japonais en Hiragana/Katakana
+  'ja': 'ja-Hrkt' 
 }
 
 function PokemonList({ searchTerm = '', language = 'en' }) {
   const [pokemons, setPokemons] = useState([])
-  const [displayedPokemons, setDisplayedPokemons] = useState([])
   const [loading, setLoading] = useState(true)
-  const [loadingMore, setLoadingMore] = useState(false)
   const [error, setError] = useState(null)
-  const [page, setPage] = useState(1)
-  const [hasMore, setHasMore] = useState(true)
-  const observerTarget = React.useRef(null)
-
-  const POKEMON_PER_PAGE = 20
 
   // Filtrer les Pokémon selon le terme de recherche
   const filteredPokemons = pokemons.filter(pokemon =>
     pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
-  // Charger tous les Pokémon une seule fois
   useEffect(() => {
     const fetchAllPokemons = async () => {
       try {
@@ -35,29 +31,24 @@ function PokemonList({ searchTerm = '', language = 'en' }) {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
         const data = await response.json()
 
-        // Récupérer les détails de chaque Pokémon
         const pokemonDetails = await Promise.all(
           data.results.map(async (pokemon) => {
             const detailResponse = await fetch(pokemon.url)
             const details = await detailResponse.json()
             
-            // Récupérer les informations de l'espèce pour les noms traduits
             const speciesResponse = await fetch(details.species.url)
             const speciesData = await speciesResponse.json()
             
-            // Trouver le nom dans la langue sélectionnée
             const languageCode = languageMap[language]
             const translatedName = speciesData.names.find(
               nameObj => nameObj.language.name === languageCode
             )
             
-            // Récupérer les noms de types traduits
             const translatedTypes = await Promise.all(
               details.types.map(async (typeInfo) => {
                 const typeResponse = await fetch(typeInfo.type.url)
                 const typeData = await typeResponse.json()
                 
-                // Trouver le nom du type dans la langue sélectionnée
                 const translatedTypeName = typeData.names.find(
                   nameObj => nameObj.language.name === languageCode
                 )
@@ -79,9 +70,6 @@ function PokemonList({ searchTerm = '', language = 'en' }) {
         )
 
         setPokemons(pokemonDetails)
-        setDisplayedPokemons(pokemonDetails.slice(0, POKEMON_PER_PAGE))
-        setPage(1)
-        setHasMore(pokemonDetails.length > POKEMON_PER_PAGE)
         setError(null)
       } catch (err) {
         setError('Erreur lors du chargement des Pokémon')
@@ -94,100 +82,57 @@ function PokemonList({ searchTerm = '', language = 'en' }) {
     fetchAllPokemons()
   }, [language])
 
-  // Charger plus de Pokémon quand on scroll
-  const loadMorePokemons = React.useCallback(() => {
-    if (loadingMore || !hasMore) return
-
-    setLoadingMore(true)
-    setTimeout(() => {
-      const nextPage = page + 1
-      const startIndex = page * POKEMON_PER_PAGE
-      const endIndex = startIndex + POKEMON_PER_PAGE
-      const newPokemons = pokemons.slice(startIndex, endIndex)
-      
-      setDisplayedPokemons(prev => [...prev, ...newPokemons])
-      setPage(nextPage)
-      setHasMore(endIndex < pokemons.length)
-      setLoadingMore(false)
-    }, 500)
-  }, [page, pokemons, loadingMore, hasMore])
-
-  // Intersection Observer pour le scroll infini
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        if (entries[0].isIntersecting && hasMore && !loadingMore) {
-          loadMorePokemons()
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    const currentTarget = observerTarget.current
-    if (currentTarget) {
-      observer.observe(currentTarget)
-    }
-
-    return () => {
-      if (currentTarget) {
-        observer.unobserve(currentTarget)
-      }
-    }
-  }, [loadMorePokemons, hasMore, loadingMore])
-  // Appliquer le filtre de recherche sur les Pokémon affichés
-  const pokemonsToShow = searchTerm 
-    ? filteredPokemons 
-    : displayedPokemons
-
   if (loading) {
     return (
-      <div className="pokemon-list-loading">
-        <div className="pokeball-loader"></div>
-        <p>Chargement des Pokémon...</p>
-      </div>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 400, gap: 2 }}>
+        <CircularProgress size={60} />
+        <Typography variant="h6">Chargement des Pokémon...</Typography>
+      </Box>
     )
   }
 
   if (error) {
     return (
-      <div className="pokemon-list-error">
-        <p>{error}</p>
-      </div>
+      <Box sx={{ display: 'flex', justifyContent: 'center', p: 3 }}>
+        <Alert severity="error">{error}</Alert>
+      </Box>
     )
   }
 
   return (
-    <>
-      <div className="pokemon-list">
-        {pokemonsToShow.length > 0 ? (
-          pokemonsToShow.map((pokemon) => (
+    <Grid 
+      container 
+      spacing={3}
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: {
+          xs: 'repeat(1, 1fr)',
+          sm: 'repeat(2, 1fr)',
+          md: 'repeat(3, 1fr)',
+          lg: 'repeat(5, 1fr)',
+        },
+        gap: 3,
+      }}
+    >
+      {filteredPokemons.length > 0 ? (
+        filteredPokemons.map((pokemon) => (
+          <Box key={pokemon.id}>
             <PokemonCard
-              key={pokemon.id}
               id={pokemon.id}
               name={pokemon.name}
               image={pokemon.image}
               types={pokemon.types}
             />
-          ))
-        ) : (
-          <div className="no-results">
-            <p>No Pokémon found matching "{searchTerm}"</p>
-          </div>
-        )}
-      </div>
-      
-      {/* Élément observé pour le scroll infini */}
-      {!searchTerm && hasMore && (
-        <div ref={observerTarget} className="load-more-trigger">
-          {loadingMore && (
-            <div className="loading-more">
-              <div className="pokeball-loader-small"></div>
-              <p>Chargement...</p>
-            </div>
-          )}
-        </div>
+          </Box>
+        ))
+      ) : (
+        <Box sx={{ gridColumn: '1 / -1' }}>
+          <Typography variant="h6" align="center" sx={{ py: 5 }}>
+            No Pokémon found matching "{searchTerm}"
+          </Typography>
+        </Box>
       )}
-    </>
+    </Grid>
   )
 }
 
