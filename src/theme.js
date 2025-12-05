@@ -1,25 +1,36 @@
 import { createTheme } from '@mui/material/styles'
 
-const theme = createTheme({
+export const getTheme = (mode) => createTheme({
   palette: {
-    mode: 'dark',
+    mode,
     primary: {
       main: '#dc0a2d',
     },
-    background: {
-      default: '#2b3945',
-      paper: '#3d4c5c',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: '#8a9aa9',
-    },
+    ...(mode === 'dark' ? {
+      background: {
+        default: '#2b3945',
+        paper: '#3d4c5c',
+      },
+      text: {
+        primary: '#ffffff',
+        secondary: '#8a9aa9',
+      },
+    } : {
+      background: {
+        default: '#f5f5f5',
+        paper: '#ffffff',
+      },
+      text: {
+        primary: '#2b3945',
+        secondary: '#5a6a79',
+      },
+    }),
   },
   components: {
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundColor: '#ffffff',
+          backgroundColor: mode === 'dark' ? '#ffffff' : '#ffffff',
           color: '#2b3945',
         },
       },
@@ -35,4 +46,4 @@ const theme = createTheme({
   },
 })
 
-export default theme
+export default getTheme('dark')

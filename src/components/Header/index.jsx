@@ -6,8 +6,11 @@ import TextField from '@mui/material/TextField'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
+import IconButton from '@mui/material/IconButton'
+import Brightness4Icon from '@mui/icons-material/Brightness4'
+import Brightness7Icon from '@mui/icons-material/Brightness7'
 
-const Header = ({ searchTerm, onSearchChange, language, onLanguageChange }) => {
+const Header = ({ searchTerm, onSearchChange, language, onLanguageChange, themeMode, onThemeToggle }) => {
   const languages = [
     { code: 'en', label: 'English', flag: '🇬🇧' },
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
@@ -53,8 +56,22 @@ const Header = ({ searchTerm, onSearchChange, language, onLanguageChange }) => {
           />
         </Box>
         
-        {/* Sélecteur de langue à droite */}
-        <Box sx={{ flexShrink: 0 }}>
+        {/* Bouton theme + Sélecteur de langue à droite */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexShrink: 0 }}>
+          <IconButton 
+            onClick={onThemeToggle} 
+            color="inherit"
+            aria-label="toggle theme"
+            sx={{ 
+              bgcolor: 'background.default',
+              '&:hover': {
+                bgcolor: 'action.hover',
+              }
+            }}
+          >
+            {themeMode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
+          
           <FormControl size="small" sx={{ minWidth: 140 }}>
             <Select
               value={language}
