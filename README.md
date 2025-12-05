@@ -1,32 +1,23 @@
-# 🎮 Pokédex React
+# 🎮 Pokédex React + Material-UI
 
-> 📚 **Projet Éducatif Individuel** - Application Pokédex moderne et interactive construite avec React et Vite
+> 📚 **Projet Éducatif Individuel** - Application Pokédex moderne construite avec React, Material-UI et PokeAPI
 
-Une application web présentant une interface utilisateur élégante avec des animations fluides, développée dans le cadre d'un apprentissage des technologies web modernes.
+Une application web élégante présentant les 151 Pokémon de la première génération avec support multi-langues et design Material Design.
 
 ![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![MUI](https://img.shields.io/badge/MUI-6.x-007FFF?style=for-the-badge&logo=mui&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-7.2.6-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Educational](https://img.shields.io/badge/Type-Educational-green?style=for-the-badge)
-
-## 🎯 Objectifs Pédagogiques
-
-Ce projet a été développé pour apprendre et pratiquer :
-
-- ⚛️ **React** - Composants fonctionnels, hooks, et gestion d'état
-- 🏗️ **Architecture** - Organisation modulaire du code
-- 🎨 **CSS Moderne** - Flexbox, Grid, animations et responsive design
-- ⚡ **Vite** - Configuration et optimisation d'un projet moderne
-- 📦 **npm** - Gestion des dépendances et scripts
+![PokeAPI](https://img.shields.io/badge/PokeAPI-v2-EF5350?style=for-the-badge)
 
 ## ✨ Fonctionnalités
 
-- 🎨 **Design Moderne** - Interface utilisateur premium avec des dégradés et des animations
-- 📱 **Responsive** - Optimisé pour tous les appareils (mobile, tablette, desktop)
-- ⚡ **Performance** - Construit avec Vite pour un démarrage ultra-rapide
-- 🌍 **Multi-langues** - Sélection de langue (EN, FR, ES)
-- 🎭 **Animations** - Effets de survol et transitions fluides
-- 🖼️ **Images Officielles** - Artwork officiel des Pokémon via PokeAPI
+- 🎨 **Material-UI** - Design professionnel avec composants Material Design
+- 🌍 **Multi-langues** - Support de 4 langues (EN, FR, ES, JA) avec traduction des noms et types
+- 🔍 **Recherche en temps réel** - Filtrage instantané par nom de Pokémon
+- 📱 **Responsive** - Grille adaptative (1-5 colonnes selon l'écran)
+- ⚡ **PokeAPI** - Données en temps réel des 151 Pokémon Gen 1
+- 🎯 **Types colorés** - 18 types avec couleurs officielles
+- 🖼️ **Artwork officiel** - Images haute qualité de chaque Pokémon
 
 ## 🚀 Démarrage Rapide
 
@@ -42,7 +33,7 @@ Ce projet a été développé pour apprendre et pratiquer :
 git clone https://github.com/votre-username/pokedex-react.git
 
 # Naviguer dans le dossier
-cd pokedex-react
+cd pokedex
 
 # Installer les dépendances
 npm install
@@ -57,46 +48,47 @@ L'application sera accessible sur `http://localhost:5173/`
 
 ```
 src/
-├── assets/              # Images et ressources statiques
-├── components/          # Composants React
-│   ├── Header/         # En-tête avec logo et sélection de langue
-│   ├── PokemonCard/    # Carte individuelle de Pokémon
-│   └── PokemonList/    # Grille de cartes Pokémon
-├── data.json           # Données des Pokémon
-├── App.jsx             # Composant principal
-├── main.jsx            # Point d'entrée
-└── index.css           # Styles globaux
+├── components/
+│   ├── Header/          # AppBar avec recherche et sélecteur de langue
+│   ├── PokemonCard/     # Card MUI avec image, nom, types
+│   └── PokemonList/     # Grid avec appels API PokeAPI
+├── theme.js             # Configuration du thème MUI personnalisé
+├── App.jsx              # Composant principal avec ThemeProvider
+└── main.jsx             # Point d'entrée
 ```
 
 ## 🛠️ Technologies Utilisées
 
-- **React 18** - Bibliothèque JavaScript pour construire l'interface utilisateur
-- **Vite** - Build tool moderne et rapide
-- **CSS3** - Animations et styles modernes
-- **Google Fonts** - Police Inter pour une typographie élégante
+| Technologie     | Version | Usage                      |
+| --------------- | ------- | -------------------------- |
+| **React**       | 18.3.1  | Framework UI               |
+| **Material-UI** | 6.x     | Bibliothèque de composants |
+| **Emotion**     | 11.x    | CSS-in-JS                  |
+| **Vite**        | 7.2.6   | Build tool                 |
+| **PokeAPI**     | v2      | Données Pokémon            |
 
-## 📸 Captures d'Écran
+## 🎨 Thème Personnalisé
 
-> _Ajoutez vos captures d'écran ici après avoir pris des screenshots de l'application_
+Le thème MUI est configuré avec :
 
-## 🎨 Personnalisation
+- **Mode sombre** par défaut
+- **Couleur primaire** : `#dc0a2d` (rouge Pokédex)
+- **Fond** : `#2b3945` (bleu-gris foncé)
+- **Cartes blanches** pour les Pokémon
 
-### Ajouter de Nouveaux Pokémon
+## 🌍 Support Multi-langues
 
-Modifiez le fichier `src/data.json` :
+L'application traduit automatiquement :
 
-```json
-{
-  "id": 150,
-  "name": "Mewtwo",
-  "type": "Psychic",
-  "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png"
-}
-```
+- ✅ Noms des Pokémon (via API species)
+- ✅ Types des Pokémon (via API type)
 
-### Modifier les Couleurs
+**Langues supportées :**
 
-Les couleurs principales sont définies dans les fichiers CSS de chaque composant. Vous pouvez personnaliser les dégradés et les couleurs selon vos préférences.
+- 🇬🇧 English
+- 🇫🇷 Français
+- 🇪🇸 Español
+- 🇯🇵 日本語 (Japonais)
 
 ## 📦 Scripts Disponibles
 
@@ -114,36 +106,55 @@ npm run preview
 npm run lint
 ```
 
-## 🌟 Améliorations Futures
+## 🎯 Grille Responsive
 
-- [ ] Intégration complète avec l'API PokeAPI
-- [ ] Recherche et filtrage de Pokémon
-- [ ] Page de détails pour chaque Pokémon
-- [ ] Système de favoris
-- [ ] Mode sombre/clair
-- [ ] Internationalisation complète (i18n)
-- [ ] Animations de chargement
-- [ ] Tests unitaires et d'intégration
+| Breakpoint | Colonnes | Taille écran      |
+| ---------- | -------- | ----------------- |
+| xs         | 1        | Mobile            |
+| sm         | 2        | Tablette portrait |
+| md         | 3        | Tablette paysage  |
+| lg         | 5        | Desktop           |
+
+## 🔧 Configuration PokeAPI
+
+L'application utilise 3 endpoints :
+
+1. `/pokemon?limit=151` - Liste des 151 Pokémon
+2. `/pokemon/{id}` - Détails (image, types)
+3. `/pokemon-species/{id}` - Noms traduits
 
 ## 📚 Contexte Éducatif
 
-Ce projet a été réalisé dans le cadre d'un apprentissage personnel des technologies web modernes. Il s'agit d'un projet individuel visant à mettre en pratique les concepts de React, la gestion de composants, et le design responsive.
+Projet développé pour apprendre :
+
+- ⚛️ React hooks (useState, useEffect, useCallback)
+- 🎨 Material-UI et système de design
+- 🌐 Intégration d'API REST
+- 🌍 Internationalisation (i18n)
+- 📱 Design responsive avec CSS Grid
+
+## 🌟 Améliorations Futures
+
+- [ ] Modal de détails pour chaque Pokémon
+- [ ] Système de favoris avec localStorage
+- [ ] Filtrage par type
+- [ ] Filtrage par génération
+- [ ] Cache des traductions
+- [ ] Mode clair/sombre toggle
+- [ ] Pagination ou scroll infini
+- [ ] Tests unitaires (Jest/Vitest)
 
 ## 📝 Licence
 
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
-
-## 👤 Auteur
-
-Projet éducatif individuel réalisé pour l'apprentissage du développement web moderne.
+Ce projet est sous licence MIT.
 
 ## 🙏 Ressources
 
-- [PokeAPI](https://pokeapi.co/) - Données et images des Pokémon
-- [Vite Documentation](https://vitejs.dev/) - Guide et documentation Vite
-- [React Documentation](https://react.dev/) - Documentation officielle React
-- [MDN Web Docs](https://developer.mozilla.org/) - Référence CSS et JavaScript
+- [PokeAPI](https://pokeapi.co/) - API Pokémon gratuite
+- [Material-UI](https://mui.com/) - Bibliothèque de composants React
+- [Vite](https://vitejs.dev/) - Build tool moderne
+- [React](https://react.dev/) - Documentation officielle
 
 ---
 
-💡 **Note** : Ce projet est à but éducatif et ne prétend pas être une application de production.
+💡 **Note** : Projet éducatif à but d'apprentissage du développement web moderne.
